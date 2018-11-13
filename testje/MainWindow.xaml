@@ -3,10 +3,47 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:m="clr-namespace:Microsoft.Maps.MapControl.WPF;assembly=Microsoft.Maps.MapControl.WPF"
         xmlns:local="clr-namespace:testje"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        
+    <Grid x:Name="LayoutRoot" Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="40" />
+            <RowDefinition Height="20" />
+            <RowDefinition Height="30"/>
+        </Grid.RowDefinitions>
+        <m:Map x:Name="myMap" CredentialsProvider="INSERT_YOUR_BING_MAPS_KEY" 
+               Grid.Column="0" Grid.Row="0" Grid.RowSpan="3" Padding="5"
+               Center="39.3683,-95.2734,0.0000" ZoomLevel="4.000" AnimationLevel="None" Mode="AerialWithLabels"/>
+        <StackPanel Orientation="Horizontal" Opacity="0.7" Grid.Column="0" Grid.Row="1" HorizontalAlignment="Center">
+            <Button x:Name="btnNorthAmerica" Click="ChangeMapView_Click" Tag="39.3683,-95.2734,0.0000 4.0000"
+                     Margin="5">
+                <TextBlock>North America</TextBlock>
+            </Button>
+            <Button x:Name="btnNewYork" Click="ChangeMapView_Click" Tag="40.7199,-74.0030,0.0000 12.0000" Margin="5">
+                <TextBlock>New York</TextBlock>
+            </Button>
+            <Button x:Name="btnSanFrancisco" Click="ChangeMapView_Click" Tag="37.6801,-122.3395,0.0000 11.0000" Margin="5">
+                <TextBlock>San Francisco</TextBlock>
+            </Button>
+            <Button x:Name="btnVancouver" Click="ChangeMapView_Click" Tag="49.2765,-123.1030,0.0000 14.0000" Margin="5">
+                <TextBlock>Vancouver</TextBlock>
+            </Button>
+            <ComboBox SelectionChanged="AnimationLevel_SelectionChanged" SelectedIndex="1" Margin="10" Height="20">
+                <ComboBoxItem Content="None" />
+                <ComboBoxItem Content="Full" />
+            </ComboBox>
+
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Opacity="0.9" Grid.Column="0" Grid.Row="2" HorizontalAlignment="Center">
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Opacity="0.9" Grid.Column="0" Grid.Row="3" HorizontalAlignment="Center">
+            <TextBlock Text="Latitude: " Padding="5" Foreground="White"/>
+            <TextBox x:Name="txtLatitude" Text="" IsReadOnly="True" Background="LightGray"/>
+            <TextBlock Text="Longitude: " Padding="5" Foreground="White" />
+            <TextBox x:Name="txtLongitude" Text="" IsReadOnly="True" Background="LightGray"/>
+        </StackPanel>
     </Grid>
 </Window>
